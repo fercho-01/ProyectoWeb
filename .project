@@ -3,6 +3,7 @@
 	<name>ProyectoWeb</name>
 	<comment></comment>
 	<projects>
+		<project>ProyectoIW</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
