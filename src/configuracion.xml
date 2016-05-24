@@ -65,10 +65,8 @@
 	<bean id="encuestaService" class="co.edu.udea.iw.service.EncuestaService">
 		<property name="encuestaDAO" ref="EncuestaDAO"></property>
 	</bean>
-	
-	<tx:annotation-driven transaction-manager="transactionManager"/>
 	<context:component-scan base-package="co.edu.udea.iw.ws"/>
 	
-	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>

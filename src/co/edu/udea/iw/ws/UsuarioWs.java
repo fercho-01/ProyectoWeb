@@ -36,6 +36,8 @@ public class UsuarioWs {
 	 * @param pass Contraseña del usuario
 	 * @return true si el usuario es valido, false de lo contrario
 	 */
+	
+	//retornar json
 	@Produces(MediaType.TEXT_HTML)
 	@GET
 	@Path("Login")
@@ -64,8 +66,21 @@ public class UsuarioWs {
 	@Produces(MediaType.TEXT_HTML)
 	@POST
 	@Path("Modificar")
+	//retornar json con confirmacion
 	public String ModificarUsuario(@FormParam("cedula")String cedula,@FormParam("pass")String pass,@FormParam("nombre")String nombre,@FormParam("email")String email){
-		return "false";
+		boolean retorno=false;
+		try {
+			retorno = usuarioService.modificarUsuario(cedula, pass, nombre, email);
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			logger.error("error al modificar un usuario",e);
+		} catch (DaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			logger.error("error al modificar un usuario",e);
+		}
+		return String.valueOf(retorno);
 	}
 	
 	/**
@@ -79,6 +94,7 @@ public class UsuarioWs {
 	@Produces(MediaType.TEXT_HTML)
 	@PUT
 	@Path("Crear")
+	//retornar json con usuario creado
 	public String crear(@FormParam("cedula")String cedula,@FormParam("pass")String pass,@FormParam("nombre")String nombre,@FormParam("email")String email){
 		boolean retorno=false;
 		try {
