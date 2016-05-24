@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+	    <property name="url" value="jdbc:mysql://localhost:3306/proyecto"/>
+	    <property name="username" value="root"/>
+	    <property name="password" value="root"/>
+	</bean>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+	    <property name="dataSource" ref="dataSource"></property>
+	    <property name="mappingResources">
+	        <list>
+                <value>co/edu/udea/iw/dao/mapping/Empleado.hbm.xml</value>
+                <value>co/edu/udea/iw/dao/mapping/Encuesta.hbm.xml</value>
+                <value>co/edu/udea/iw/dao/mapping/Pqr.hbm.xml</value>
+                <value>co/edu/udea/iw/dao/mapping/Usuario.hbm.xml</value>
+            </list>
+	    </property>
+	    <property name="hibernateProperties">
+	        <props>
+	            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+	            <prop key="hibernate.show_sql">true</prop>
+				<prop key="javax.persistence.validation.mode">none</prop>
+	        </props>
+	    </property>
+	</bean>
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	    <property name="dataSource" ref="dataSource"></property>
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="EmpleadoDAO" class="co.edu.udea.iw.dao.hibernate.EmpleadoDAOHibernate">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="EncuestaDAO" class="co.edu.udea.iw.dao.hibernate.EncuestaDAOHibernate">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="PqrDAO" class="co.edu.udea.iw.dao.hibernate.PqrDAOHibernate">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="UsuarioDAO" class="co.edu.udea.iw.dao.hibernate.UsuarioDAOHibernate">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="usuarioService" class="co.edu.udea.iw.service.UsuarioService">
+	    <property name="usuarioDAO" ref="UsuarioDAO"></property>
+	</bean>
+	<bean id="pqrService" class="co.edu.udea.iw.service.PqrService">
+	    <property name="pqrDAO" ref="PqrDAO"></property>
+	</bean>
+	<bean id="empleadoService" class="co.edu.udea.iw.service.EmpleadoService">
+		<property name="pqrDAO" ref="PqrDAO"></property>
+		<property name="empleadoDAO" ref="EmpleadoDAO"></property>
+	</bean>
+	<bean id="encuestaService" class="co.edu.udea.iw.service.EncuestaService">
+		<property name="encuestaDAO" ref="EncuestaDAO"></property>
+	</bean>
+	<context:component-scan base-package="co.edu.udea.iw.ws"/>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+
+</beans>
