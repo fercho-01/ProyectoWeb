@@ -6,6 +6,9 @@ package co.edu.udea.iw.ws;
  * @author JONATHAN TORRES
  **/
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -22,6 +25,7 @@ import co.edu.udea.iw.service.UsuarioService;
 import co.edu.udea.iw.service.UsuarioServiceTest;
 import co.edu.udea.iw.util.exception.DaoException;
 import co.edu.udea.iw.util.exception.ServiceException;
+import co.edu.udea.iw.util.validations.Validaciones;
 @Component
 @Path("Usuario")
 public class UsuarioWs {
@@ -34,7 +38,7 @@ public class UsuarioWs {
 	 * Metodo que expone un servicio web para verificar si un usuario es valido
 	 * @param cedula Cedula del usuario
 	 * @param pass Contraseña del usuario
-	 * @return true si el usuario es valido, false de lo contrario
+	 * @return json con resultado y posibles errores
 	 */
 	
 	//retornar json
@@ -43,16 +47,40 @@ public class UsuarioWs {
 	@Path("Login")
 	public String login(@QueryParam("cedula") String cedula, @QueryParam("pass")String pass){
 		boolean retorno = false;
+		boolean validar=true;
+		List<String> errores= new ArrayList<String>();
+		if(Validaciones.isTextoVacio(cedula)){
+			validar=false;
+			errores.add("{\"error\":\"la cedula no puede ser nula\"}");
+		}
+		if(Validaciones.isTextoVacio(pass)){
+			validar=false;
+			errores.add("{\"error\":\"la contraseña no puede ser nula\"}");
+		}
 		try {
-			retorno = usuarioService.login(cedula,pass);
+			if(validar){
+				retorno = usuarioService.login(cedula,pass);
+			}
 		} catch (DaoException e) {
 			e.printStackTrace();
 			logger.error("error en el servicio web",e);
+			errores.add("{\"error\":\"usuario o contraseña no validos\"}");
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			logger.error("error en el servicio web",e);
+			errores.add("{\"error\":\"usuario o contraseña no validos\"}");
 		}
-		return String.valueOf(retorno);
+		String cadena = "{\"valido\":\""+retorno+"\"";
+		if(!errores.isEmpty()){
+			cadena+=",\"errores\":[";
+			for(String error:errores){
+				cadena+=error+",";
+			}
+			cadena = cadena.substring(0,cadena.length()-1);
+			cadena+="]";
+		}
+		cadena+="}";
+		return cadena;
 	}
 	
 	/**
@@ -69,18 +97,50 @@ public class UsuarioWs {
 	//retornar json con confirmacion
 	public String ModificarUsuario(@FormParam("cedula")String cedula,@FormParam("pass")String pass,@FormParam("nombre")String nombre,@FormParam("email")String email){
 		boolean retorno=false;
+		boolean ejecutar=true;
+		List<String> errores= new ArrayList<String>();
+		if(Validaciones.isTextoVacio(cedula)){
+			ejecutar=false;
+			errores.add("{\"error\":\"la cedula no puede ser nula\"}");
+		}
+		if(Validaciones.isTextoVacio(pass)){
+			ejecutar=false;
+			errores.add("{\"error\":\"la contraseña no puede ser nula\"}");
+		}
+		if(Validaciones.isTextoVacio(nombre)){
+			ejecutar=false;
+			errores.add("{\"error\":\"El nombre no puede ser nulo\"}");
+		}
+		if(!Validaciones.isEmail(email)){
+			ejecutar=false;
+			errores.add("{\"error\":\"Email no valido\"}");
+		}
 		try {
-			retorno = usuarioService.modificarUsuario(cedula, pass, nombre, email);
+			if(ejecutar){
+				retorno = usuarioService.modificarUsuario(cedula, pass, nombre, email);
+			}
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.error("error al modificar un usuario",e);
+			errores.add("{\"error\":\""+e.getMessage()+"\"}");
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.error("error al modificar un usuario",e);
+			errores.add("{\"error\":\"Ha ocurrido un problema al guardar el usuario\"}");
 		}
-		return String.valueOf(retorno);
+		String cadena = "{\"realizado\":\""+retorno+"\"";
+		if(!errores.isEmpty()){
+			cadena+=",\"errores\":[";
+			for(String error:errores){
+				cadena+=error+",";
+			}
+			cadena = cadena.substring(0,cadena.length()-1);
+			cadena+="]";
+		}
+		cadena+="}";
+		return cadena;
 	}
 	
 	/**
@@ -97,16 +157,48 @@ public class UsuarioWs {
 	//retornar json con usuario creado
 	public String crear(@FormParam("cedula")String cedula,@FormParam("pass")String pass,@FormParam("nombre")String nombre,@FormParam("email")String email){
 		boolean retorno=false;
+		boolean ejecutar=true;
+		List<String> errores= new ArrayList<String>();
+		if(Validaciones.isTextoVacio(cedula)){
+			ejecutar=false;
+			errores.add("{\"error\":\"la cedula no puede ser nula\"}");
+		}
+		if(Validaciones.isTextoVacio(pass)){
+			ejecutar=false;
+			errores.add("{\"error\":\"la contraseña no puede ser nula\"}");
+		}
+		if(Validaciones.isTextoVacio(nombre)){
+			ejecutar=false;
+			errores.add("{\"error\":\"El nombre no puede ser nulo\"}");
+		}
+		if(!Validaciones.isEmail(email)){
+			ejecutar=false;
+			errores.add("{\"error\":\"Email no valido\"}");
+		}
 		try {
-			retorno = usuarioService.crearUsuario(cedula, pass, nombre, email);
+			if(ejecutar){
+				retorno = usuarioService.crearUsuario(cedula, pass, nombre, email);
+			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			logger.error("error al crear un usuario",e);
+			errores.add("{\"error\":\""+e.getMessage()+"\"}");
 		} catch (DaoException e) {
 			e.printStackTrace();
 			logger.error("error al crear un usuario",e);
+			errores.add("{\"error\":\"Ha ocurrido un problema al guardar el empleado\"}");
 		}
-		return String.valueOf(retorno);
+		String cadena = "{\"realizado\":\""+retorno+"\"";
+		if(!errores.isEmpty()){
+			cadena+=",\"errores\":[";
+			for(String error:errores){
+				cadena+=error+",";
+			}
+			cadena = cadena.substring(0,cadena.length()-1);
+			cadena+="]";
+		}
+		cadena+="}";
+		return cadena;
 	}
 	
 }

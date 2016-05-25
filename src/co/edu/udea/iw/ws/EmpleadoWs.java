@@ -1,5 +1,8 @@
 package co.edu.udea.iw.ws;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Component;
 import co.edu.udea.iw.service.EmpleadoService;
 import co.edu.udea.iw.util.exception.DaoException;
 import co.edu.udea.iw.util.exception.ServiceException;
+import co.edu.udea.iw.util.validations.Validaciones;
 
 /**
  * Esta clase expone los servicios web necesarios para un empleado
@@ -32,21 +36,51 @@ public class EmpleadoWs {
 	
 	private static Logger logger=Logger.getLogger(UsuarioWs.class);
 	
-	@Produces(MediaType.TEXT_HTML)
+	/**
+	 * Metodo que expone un servicio web para loggear empleados en el sistema
+	 * @param cedula Cedula del empleado
+	 * @param pass Contraseña del empleado
+	 * @return json con la validacion
+	 */
+	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	@Path("Login")
 	public String login(@QueryParam("cedula")String cedula,@QueryParam("pass")String pass){
 		boolean retorno=false;
+		boolean validar=true;
+		List<String> errores= new ArrayList<String>();
+		if(Validaciones.isTextoVacio(cedula)){
+			validar=false;
+			errores.add("{\"error\":\"la cedula no puede ser nula\"}");
+		}
+		if(Validaciones.isTextoVacio(pass)){
+			validar=false;
+			errores.add("{\"error\":\"la contraseña no puede ser nula\"}");
+		}
 		try {
-			retorno=empleadoService.validar(cedula, pass);
+			if(validar){
+				retorno=empleadoService.validar(cedula, pass);
+			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			logger.error("error al exponer el servicio web loging para un empleado",e);
+			errores.add("{\"error\":\"usuario o contraseña no validos\"}");
 		} catch (DaoException e) {
 			e.printStackTrace();
 			logger.error("error al exponer el servicio web loging para un empleado",e);
+			errores.add("{\"error\":\"usuario o contraseña no validos\"}");
 		}
-		return String.valueOf(retorno);
+		String cadena = "{\"valido\":\""+retorno+"\"";
+		if(!errores.isEmpty()){
+			cadena+=",\"errores\":[";
+			for(String error:errores){
+				cadena+=error+",";
+			}
+			cadena = cadena.substring(0,cadena.length()-1);
+			cadena+="]";
+		}
+		cadena+="}";
+		return cadena;
 	}
 	
 	/**
@@ -56,23 +90,59 @@ public class EmpleadoWs {
 	 * @param nombre Nombre del empleado
  	 * @param email Correo electronico del empleado
 	 * @param cargo Cargo del empleado
-	 * @return true en caso de crear el empleado exitosamente, de lo contrario false
+	 * @return json con la validacion
 	 */
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@PUT
 	@Path("Crear")
 	public String crearEmpleado(@FormParam("cedula")String cedula,@FormParam("pass")String pass,@FormParam("nombre")String nombre,@FormParam("email")String email,@FormParam("cargo")String cargo){
 		boolean retorno=false;
+		boolean ejecutar=true;
+		List<String> errores= new ArrayList<String>();
+		if(Validaciones.isTextoVacio(cedula)){
+			ejecutar=false;
+			errores.add("{\"error\":\"la cedula no puede ser nula\"}");
+		}
+		if(Validaciones.isTextoVacio(pass)){
+			ejecutar=false;
+			errores.add("{\"error\":\"la contraseña no puede ser nula\"}");
+		}
+		if(Validaciones.isTextoVacio(nombre)){
+			ejecutar=false;
+			errores.add("{\"error\":\"El nombre no puede ser nulo\"}");
+		}
+		if(!Validaciones.isEmail(email)){
+			ejecutar=false;
+			errores.add("{\"error\":\"Email no valido\"}");
+		}
+		if(Validaciones.isTextoVacio(cargo)){
+			ejecutar=false;
+			errores.add("{\"error\":\"El cargo no puede ser nulo\"}");
+		}
 		try {
-			retorno = empleadoService.registrarEmpleado(cedula, email, nombre, cargo, pass);
+			if(ejecutar){
+				retorno = empleadoService.registrarEmpleado(cedula, email, nombre, cargo, pass);
+			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
+			errores.add("{\"error\":\""+e.getMessage()+"\"}");
 			logger.error("error al crear el empleado",e);
 		} catch (DaoException e) {
+			errores.add("{\"error\":\"Ha ocurrido un problema al guardar el empleado\"}");
 			e.printStackTrace();
 			logger.error("error al crear el empleado",e);
 		}
-		return String.valueOf(retorno);
+		String cadena = "{\"realizado\":\""+retorno+"\"";
+		if(!errores.isEmpty()){
+			cadena+=",\"errores\":[";
+			for(String error:errores){
+				cadena+=error+",";
+			}
+			cadena = cadena.substring(0,cadena.length()-1);
+			cadena+="]";
+		}
+		cadena+="}";
+		return cadena;
 	}
 	/**
 	 * Metodo que expone un servicio web para modificar los datos de un empleado
@@ -81,24 +151,61 @@ public class EmpleadoWs {
 	 * @param nombre Nombre del empleado
 	 * @param email Correo electronico del empleado
 	 * @param cargo Cargo del empleado
-	 * @return true si la operacion se realizo con exito de lo contrario false
+	 * @return json con confirmacion, y posibles errores
 	 */
-	@Produces(MediaType.TEXT_HTML)
+	@Produces(MediaType.APPLICATION_JSON)
 	@POST
 	@Path("Modificar")
 	public String modificarEmpleado(@FormParam("cedula")String cedula,@FormParam("pass")String pass,@FormParam("nombre")String nombre,@FormParam("email")String email,@FormParam("cargo")String cargo){
 		boolean retorno=false;
+		boolean ejecutar=true;
+		List<String> errores= new ArrayList<String>();
+		if(Validaciones.isTextoVacio(cedula)){
+			ejecutar=false;
+			errores.add("{\"error\":\"la cedula no puede ser nula\"}");
+		}
+		if(Validaciones.isTextoVacio(pass)){
+			ejecutar=false;
+			errores.add("{\"error\":\"la contraseña no puede ser nula\"}");
+		}
+		if(Validaciones.isTextoVacio(nombre)){
+			ejecutar=false;
+			errores.add("{\"error\":\"El nombre no puede ser nulo\"}");
+		}
+		if(!Validaciones.isEmail(email)){
+			ejecutar=false;
+			errores.add("{\"error\":\"Email no valido\"}");
+		}
+		if(Validaciones.isTextoVacio(cargo)){
+			ejecutar=false;
+			errores.add("{\"error\":\"El cargo no puede ser nulo\"}");
+		}
+		
 		try {
-			retorno = empleadoService.modificarEmpleado(cedula, pass, nombre, email, cargo);
+			if(ejecutar){
+				retorno = empleadoService.modificarEmpleado(cedula, pass, nombre, email, cargo);
+			}
 		} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.error("error al modificar empleado",e);
+			errores.add("{\"error\":\""+e.getMessage()+"\"}");
 		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			logger.error("error al modificar empleado",e);
+			errores.add("{\"error\":\"Ha ocurrido un problema al guardar el empleado\"}");
 		}
-		return String.valueOf(retorno);
+		String cadena = "{\"realizado\":\""+retorno+"\"";
+		if(!errores.isEmpty()){
+			cadena+=",\"errores\":[";
+			for(String error:errores){
+				cadena+=error+",";
+			}
+			cadena = cadena.substring(0,cadena.length()-1);
+			cadena+="]";
+		}
+		cadena+="}";
+		return cadena;
 	}
 }
