@@ -45,13 +45,18 @@ import co.edu.udea.iw.dao.hibernate.EmpleadoDAOHibernate;
 public class PqrWs {
 	@Autowired
 	PqrService pqrService;
-
+	@Autowired
+	UsuarioService usuarioService;
+	@Autowired
+	EmpleadoService empleadoService;
 	
 	private static Logger logger=Logger.getLogger(PqrWs.class);
 	
-	/*
-	 * Metodo para obtener un pqr segun su id
-	 */
+	/**
+	 * Metodo para obtener una peticion dada su id
+	 * @param id identificacion de la peticion
+	 * @return String en formato json
+	 **/
 	@Produces(MediaType.APPLICATION_JSON)
 	@GET
 	@Path("Obtener")
@@ -64,11 +69,11 @@ public class PqrWs {
 				retorno=pqrService.Buscar(id);
 			}
 		} catch (ServiceException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			logger.error("error al exponer el servicio web buscarPqr para un pqr",e);
 			errores.add("{\"error\":\"id no existe\"}");
 		} catch (DaoException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			logger.error("error al exponer el servicio web buscarPqr para un pqr",e);
 			errores.add("{\"error\":\"id no existe\"}");
 		}
@@ -96,7 +101,7 @@ public class PqrWs {
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
 	@Path("Realizar")
-	public String realizarPqr(@FormParam("cedula")String cedula,@FormParam("password")String password,@FormParam("tipo")String tipo,
+	public String realizarPqr(@FormParam("cedula")String cedula,@FormParam("tipo")String tipo,
 			@FormParam("descripcion")String descripcion){
 
 		boolean retorno=false;
@@ -107,10 +112,7 @@ public class PqrWs {
 			ejecutar=false;
 			errores.add("{\"error\":\"la cedula no puede ser nula\"}");
 		}
-		if(Validaciones.isTextoVacio(password)){
-			ejecutar=false;
-			errores.add("{\"error\":\"la contrase�a no puede ser nula\"}");
-		}
+		
 		if(Validaciones.isTextoVacio(tipo)){
 			ejecutar=false;
 			errores.add("{\"error\":\"el tipo no puede ser nula\"}");
@@ -123,8 +125,12 @@ public class PqrWs {
 		
 		try {
 			if(ejecutar){
-				//Usuario usuario= usuarioDAO.obtener(cedula);
-				retorno = pqrService.realiarPqr(usuario, tipo, descripcion);
+				Usuario usuario = usuarioService.obtener(cedula);
+				if(usuario!=null){
+					retorno = pqrService.realiarPqr(usuario, tipo, descripcion);
+				}else{
+					errores.add("{\"error\":\"Usuario no valido\"}");
+				}
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
@@ -159,21 +165,17 @@ public class PqrWs {
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
 	@Path("Modificar")
-	public String modificarPqr(@FormParam("idPqr")String idPqr,@FormParam("cedula")String cedula,@FormParam("password")String password,@FormParam("respuesta")String respuesta
-			){
+	public String modificarPqr(@FormParam("idPqr")int idPqr,@FormParam("cedula")String cedula,@FormParam("respuesta")String respuesta){
 		boolean retorno=false;
 		boolean ejecutar=true;
-		
+		System.out.println("idpqr::: "+idPqr);
 	
 		List<String> errores= new ArrayList<String>();
 		if(Validaciones.isTextoVacio(cedula)){
 			ejecutar=false;
 			errores.add("{\"error\":\"la cedula no puede ser nula\"}");
 		}
-		if(Validaciones.isTextoVacio(password)){
-			ejecutar=false;
-			errores.add("{\"error\":\"la contrase�a no puede ser nula\"}");
-		}
+		
 		if(Validaciones.isTextoVacio(respuesta)){
 			ejecutar=false;
 			errores.add("{\"error\":\"la respuesta no puede ser nula\"}");
@@ -181,8 +183,13 @@ public class PqrWs {
 		
 		try {
 			if(ejecutar){
-				//Empleado empleado=empleadoDAO.obtener(cedula);
-				retorno = pqrService.modificarPqr(Integer.valueOf(idPqr), empleado, respuesta);
+				Empleado empleado = empleadoService.obtener(cedula);
+				if(empleado!=null){
+					retorno = pqrService.modificarPqr(idPqr, empleado, respuesta);
+				}else{
+					errores.add("{\"error\":\"empleado no valido\"}");
+				}
+				
 			}
 		} catch (ServiceException e) {
 			e.printStackTrace();
