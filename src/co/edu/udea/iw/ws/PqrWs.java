@@ -165,7 +165,7 @@ public class PqrWs {
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
 	@Path("Modificar")
-	public String modificarPqr(@FormParam("idPqr")int idPqr,@FormParam("cedula")String cedula,@FormParam("respuesta")String respuesta){
+	public String modificarPqr(@FormParam("idPqr")Integer idPqr,@FormParam("cedula")String cedula,@FormParam("respuesta")String respuesta){
 		boolean retorno=false;
 		boolean ejecutar=true;
 		System.out.println("idpqr::: "+idPqr);
