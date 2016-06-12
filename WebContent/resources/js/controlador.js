@@ -19,7 +19,7 @@ app.controller('login',function($scope,ServiceValidarEmpleado){
 		//alert("validar");
 		ServiceValidarEmpleado.validar($scope.cedula,$scope.pass).success(function($data){
 			if($data.valido=="true"){
-				alert("usuario valido");
+				window.location="./main.html";
 			}else{
 				alert("empleado no valido");
 			}
