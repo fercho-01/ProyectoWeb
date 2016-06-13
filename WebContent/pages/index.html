@@ -59,18 +59,18 @@
 					<li class="hidden"><a href=""></a></li>
 					<li class="page-scroll"><a href="" data-toggle="modal"
 						data-target="#myModal">Empleado</a></li>
-						
-						
-						
-						
-					<li class="page-scroll"><a href="seleccionpqr.html" data-toggle="modal"
-						data-target="">Usuario</a></li>
-					
-					
+
+
+
+
+					<li class="page-scroll"><a href="" data-toggle="modal"
+						data-target="#loginUsuario">Usuario</a></li>
+
+
 					<!--  a href="seleccionarpqr.html" target="_self"><input type="button"class="botonimagen" value="ESTUDIANTE UDEA"
  style="background-image:url(imagenes/interno.png)" /></a-->
-					
-					
+
+
 					<li class="page-scroll"><a href="#contact">Contactenos</a></li>
 				</ul>
 			</div>
@@ -216,19 +216,17 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Usuario</h4>
+						<h4 class="modal-title" id="myModalLabel">Login Empleado</h4>
 					</div>
+					<div class="modal-body">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#home">Login</a></li>
+							<li><a data-toggle="tab" href="#menu1">Registro</a></li>
+						</ul>
 
-					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab"
-							href="#loginUsuarioDialog">Home</a></li>
-						<li><a data-toggle="tab" href="#registro">Menu 1</a></li>
-					</ul>
-
-					<div class="tab-content">
-						<div id="loginUsuarioDialog" class="tab-pane fade in active">
-							<div ng-controller="login">
-								<div class="modal-body">
+						<div class="tab-content">
+							<div id="home" class="tab-pane fade in active">
+								<div ng-controller="login">
 									<form name="sentMessage" id="contactForm" novalidate
 										ng-submit="validarUsuario()">
 										<div class="row control-group">
@@ -252,48 +250,22 @@
 
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default"
-												data-dismiss="modal">Close</button>
+												data-dismiss="modal">Cancelar</button>
 											<button type="submit" class="btn btn-primary">Aceptar</button>
 										</div>
 									</form>
 								</div>
-							</div>
-						</div>
-						<div id="registro" class="tab-pane fade">
-							<div ng-controller="registrar">
-								<div class="modal-body">
-									<form name="sentMessage" id="contactForm" novalidate
-										ng-submit="validarUsuario()">
-										<div class="row control-group">
-											<div>
-												<label>Cedula</label> <input ng-model="cedula" type="text"
-													class="form-control" placeholder="usuario" id="user"
-													required
-													data-validation-required-message="Por favor ingrese su usuario.">
-												<p class="help-block text-danger"></p>
-											</div>
-										</div>
-										<div class="row control-group">
-											<div>
-												<label>Contraseña</label> <input ng-model="passU"
-													type="password" class="form-control"
-													placeholder="contraseña" id="pass" required
-													data-validation-required-message="Por favor ingrese su contraseña.">
-												<p class="help-block text-danger"></p>
-											</div>
-										</div>
 
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default"
-												data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-primary">Aceptar</button>
-										</div>
-									</form>
-								</div>
 							</div>
+							<div id="menu1" class="tab-pane fade">
+								<h3>Registro</h3>
+								<p>Ut enim ad minim veniam, quis nostrud exercitation
+									ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							</div>
+
 						</div>
+
 					</div>
-
 				</div>
 			</div>
 		</div>
