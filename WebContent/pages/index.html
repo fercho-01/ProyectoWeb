@@ -60,7 +60,7 @@
 					<li class="page-scroll"><a href="" data-toggle="modal"
 						data-target="#myModal">Empleado</a></li>
 					<li class="page-scroll"><a href="" data-toggle="modal"
-						data-target="#loginUsuario">Usuario</a></li>
+						data-target="#loginUsuario4444">Usuario</a></li>
 					<li class="page-scroll"><a href="#contact">Contactenos</a></li>
 				</ul>
 			</div>
@@ -202,6 +202,94 @@
 			</div>
 		</div>
 
+		<!-- Login y registro de usuarios versión gilbert-->
+<div class="modal fade" id="loginUsuario4444" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Usuario</h4>
+					</div>
+					<div class="modal-body">
+						<ul class="nav nav-tabs">
+							<li class="active"><a data-toggle="tab" href="#home">Login</a></li>
+							<li><a action="registroUsuariEmpleado.php" method="post" data-toggle="tab" href="#menu1">Registro</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<div id="home" class="tab-pane fade in active">
+								<div ng-controller="login">
+									<form name="sentMessage" id="contactForm" novalidate
+										ng-submit="validarUsuario()">
+										<div class="row control-group">
+											<div>
+												<label>Identificación</label> <input ng-model="cedulaU" type="text"
+													class="form-control" placeholder="usuario" id="cedulaU"
+													required
+													data-validation-required-message="Por favor ingrese su usuario.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+										<div class="row control-group">
+											<div>
+												<label>Contraseña</label> <input ng-model="passU"
+													type="password" class="form-control"
+													placeholder="contraseña" id="passU" required
+													data-validation-required-message="Por favor ingrese su contraseña.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Cancelar</button>
+											<button type="submit" class="btn btn-primary">Aceptar</button>
+										</div>
+									</form>
+								</div>
+
+							</div>
+							<div id="menu1" class="tab-pane fade">
+								<h3>Registro Usuario</h3>
+							<form action="mail/registroUsuarioEmpleado.php" method="post" class="smart-green" ENCTYPE="multipart/form-data">
+									<br></br>
+									<label> 
+								        <span>Identificación(CC):</span>
+								        <input id="cedulaU" type="text" name="cedulaU" placeholder="id" required />
+								    </label>
+								   <br></br>
+								     <label>
+								        <span>Nombre:</span>
+								        <input id="nombreU" type="text" name="nombreU" placeholder="Nombre" required="true"/>
+								    </label>
+								    <br></br>
+								      <label> 
+								        <span>Correo electrónico:</span>
+								        <input id="emailU" type="date" name="emailU" placeholder="email" required />
+								    </label>
+								    <br></br>
+								    <label> 
+								        <span>Contraseña:</span>
+								        <input id="passu" type="password" name="passu" placeholder="Contraseña" required />
+								    </label>
+								    <br></br>
+								    <label>
+								        <span>&nbsp;</span> 
+								        <input type="submit" class="btn btn-default" value="Enviar" onclick="bloqued()"/> 
+								    </label>
+								    
+								</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		
 		<!-- Login y registro de usuarios -->
 		<div class="modal fade" id="loginUsuario" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
@@ -217,7 +305,7 @@
 					<div class="modal-body">
 						<ul class="nav nav-tabs">
 							<li class="active"><a data-toggle="tab" href="#home">Login</a></li>
-							<li><a data-toggle="tab" href="#menu1">Registro</a></li>
+							<li><a action="registroUsuariEmpleado.php" method="post" data-toggle="tab" href="#menu1">Registro</a></li>
 						</ul>
 
 						<div class="tab-content">
@@ -255,47 +343,81 @@
 							</div>
 							<div id="menu1" class="tab-pane fade">
 								<h3>Registro</h3>
-										<div class="row control-group">
-											<div>
-												<label>Identificación(CC)</label> <input ng-model="cedulaU" type="text"
-													class="form-control" placeholder="id" id="cedulaU"
-													required
-													data-validation-required-message="Por favor ingrese su usuario.">
-												<p class="help-block text-danger"></p>
-											</div>
-										</div>
+								 
+								<label>
+        						<span>Identificación(CC):</span>
+        						<input ng-model="cedulaU" id="cedulaU" type="text" class="form-control" name="nombre" placeholder="id" required="true" data-validation-required-message="Por favor ingrese su usuario."/>
+    							</label>
+   								<p class="help-block text-danger"></p>
+   								 <br></br> 
+   								<label> 
+        						<span>Nombre:</span>
+        							<input ng-model="nameU" id="nombreU" class="form-control" type="text" name="apellidos" placeholder="nombre" required data-validation-required-message="Por favor ingrese su nombre"/>
+    							 </label>
+     								<br></br> 
+   								 <label> 
+        						 <span>Contraseña:</span>
+        						 <input ng-model="passU" id="passU" type="password" class="form-control" name="lugarnacimiento" placeholder="contraseña" required data-validation-required-message="Por favor ingrese su contraseña." />
+  							     </label>
+     							<br></br> 
+   								 <label> 
+        						 <span>Correo electrónico:</span>
+        						 <input ng-model="emailU" id="emailU" type="text" class="form-control" name="fnacimiento" placeholder="email" required data-validation-required-message="Por favor ingrese su contraseña."/>
+    							 </label>
+								 
+								<br></br> 
+								
+<!-- 										<div class="row control-group"> -->
+<!-- 											<div> -->
+<!-- 												<label>Identificación(CC)</label> <input ng-model="cedulaU" type="text" -->
+<!-- 													class="form-control" placeholder="id" id="cedulaU" -->
+<!-- 													required -->
+<!-- 													data-validation-required-message="Por favor ingrese su usuario."> -->
+<!-- 												<p class="help-block text-danger"></p> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
 										
-											<div class="row control-group">
-											<div>
-												<label>Nombre</label> <input ng-model="nameU"
-													type="password" class="form-control"
-													placeholder="nombre" id="nombreU" required
-													data-validation-required-message="Por favor ingrese su contraseña.">
-												<p class="help-block text-danger"></p>
-											</div>
-										</div>
+<!-- 											<div class="row control-group"> -->
+<!-- 											<div> -->
+<!-- 												<label>Nombre</label> <input ng-model="nameU" -->
+<!-- 													type="text" class="form-control" -->
+<!-- 													placeholder="nombre" id="nombreU" required -->
+<!-- 													data-validation-required-message="Por favor ingrese su nombre"> -->
+<!-- 												<p class="help-block text-danger"></p> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
 										
-										<div class="row control-group">
-											<div>
-												<label>Contraseña</label> <input ng-model="passU"
-													type="password" class="form-control"
-													placeholder="contraseña" id="passU" required
-													data-validation-required-message="Por favor ingrese su contraseña.">
-												<p class="help-block text-danger"></p>
-											</div>
-										</div>
+<!-- 										<div class="row control-group"> -->
+<!-- 											<div> -->
+<!-- 												<label>Contraseña</label> <input ng-model="passU" -->
+<!-- 													type="password" class="form-control" -->
+<!-- 													placeholder="contraseña" id="passU" required -->
+<!-- 													data-validation-required-message="Por favor ingrese su contraseña."> -->
+<!-- 												<p class="help-block text-danger"></p> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
 									
-										<div class="row control-group">
-											<div>
-												<label>Correo electrónico</label> <input ng-model="emailU"
-													type="text" class="form-control"
-													placeholder="email" id="emailU" required
-													data-validation-required-message="Por favor ingrese su contraseña.">
-												<p class="help-block text-danger"></p>
-											</div>
-										</div>
-							</div>
-
+<!-- 										<div class="row control-group"> -->
+<!-- 											<div> -->
+<!-- 												<label>Correo electrónico</label> <input ng-model="emailU" -->
+<!-- 													type="text" class="form-control" -->
+<!-- 													placeholder="email" id="emailU" required -->
+<!-- 													data-validation-required-message="Por favor ingrese su contraseña."> -->
+<!-- 												<p class="help-block text-danger"></p> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+						
+							<label>
+       						 <span>&nbsp;</span> 
+        					<input type="submit" class="button" value="Enviarr" onclick="bloqued()"/> 
+    						</label>
+							
+							
+<!-- 							<div class="modal-footer"> -->
+<!-- 									<button type="button" class="btn btn-primary" -->
+<!-- 											data-dismiss="modal">Cancelar</button> -->
+<!-- 									<button type="submit" class="btn btn-primary">Aceptar</button> -->
+<!-- 							</div> -->
 						</div>
 
 					</div>
