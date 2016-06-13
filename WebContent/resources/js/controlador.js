@@ -11,9 +11,11 @@ app.config(['$routeProvider',function($routeProvider){
 	}).otherwise({redirectTo: '/'});
 }]);
 
-app.controller('login',function($scope,ServiceValidarEmpleado){
+app.controller('login',function($scope,ServiceValidarEmpleado,ServiceValidarUsuario){
 	$scope.cedula="";
 	$scope.pass="";
+	$scope.cedulaU="";
+	$scope.passU="";
 	
 	$scope.validarEmpleado = function(){
 		//alert("validar");
@@ -25,13 +27,9 @@ app.controller('login',function($scope,ServiceValidarEmpleado){
 			}
 		});
 	}
-});
-
-app.controller('loginUsuario',function($scope,ServiceValidarUsuario){
-	$scope.cedulaU="";
-	$scope.passU="";
 	
 	$scope.validarUsuario = function(){
+		
 		ServiceValidarUsuario.validar($scope.cedulaU,$scope.passU).success(function($data){
 			if($data.valido=="true"){
 				window.location="./main.html";
@@ -40,6 +38,7 @@ app.controller('loginUsuario',function($scope,ServiceValidarUsuario){
 			}
 		});
 	};
+	
 });
 
 app.service('ServiceValidarEmpleado',function($http){

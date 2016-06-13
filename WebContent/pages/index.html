@@ -210,21 +210,77 @@
 					</div>
 
 					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#loginUsuarioDialog">Home</a></li>
+						<li class="active"><a data-toggle="tab"
+							href="#loginUsuarioDialog">Home</a></li>
 						<li><a data-toggle="tab" href="#registro">Menu 1</a></li>
 					</ul>
 
 					<div class="tab-content">
 						<div id="loginUsuarioDialog" class="tab-pane fade in active">
-							<h3>HOME</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-								sed do eiusmod tempor incididunt ut labore et dolore magna
-								aliqua.</p>
+							<div ng-controller="login">
+								<div class="modal-body">
+									<form name="sentMessage" id="contactForm" novalidate
+										ng-submit="validarUsuario()">
+										<div class="row control-group">
+											<div>
+												<label>Usuario</label> <input ng-model="cedulaU" type="text"
+													class="form-control" placeholder="usuario" id="user"
+													required
+													data-validation-required-message="Por favor ingrese su usuario.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+										<div class="row control-group">
+											<div>
+												<label>Contraseña</label> <input ng-model="passU"
+													type="password" class="form-control"
+													placeholder="contraseña" id="pass" required
+													data-validation-required-message="Por favor ingrese su contraseña.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Aceptar</button>
+										</div>
+									</form>
+								</div>
+							</div>
 						</div>
 						<div id="registro" class="tab-pane fade">
-							<h3>Menu 1</h3>
-							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
-								laboris nisi ut aliquip ex ea commodo consequat.</p>
+							<div ng-controller="registrar">
+								<div class="modal-body">
+									<form name="sentMessage" id="contactForm" novalidate
+										ng-submit="validarUsuario()">
+										<div class="row control-group">
+											<div>
+												<label>Cedula</label> <input ng-model="cedula" type="text"
+													class="form-control" placeholder="usuario" id="user"
+													required
+													data-validation-required-message="Por favor ingrese su usuario.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+										<div class="row control-group">
+											<div>
+												<label>Contraseña</label> <input ng-model="passU"
+													type="password" class="form-control"
+													placeholder="contraseña" id="pass" required
+													data-validation-required-message="Por favor ingrese su contraseña.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary">Aceptar</button>
+										</div>
+									</form>
+								</div>
+							</div>
 						</div>
 					</div>
 
