@@ -1,26 +1,52 @@
 <?php
-// Check for empty fields
-if(empty($_POST['name'])  		||
-   empty($_POST['email']) 		||
-   empty($_POST['phone']) 		||
-   empty($_POST['message'])	||
-   !filter_var($_POST['email'],FILTER_VALIDATE_EMAIL))
-   {
-	echo "No arguments Provided!";
-	return false;
-   }
+defined("DS") ? NULL : define("DS", DIRECTORY_SEPARATOR);
+
+//Vamos a ver si da sin contraseña o si es que el nombre root va en la segunda posición
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+	$mysqli = new mysqli("localhost", "dbaEncuestas", "root", "");
+if ($mysqli->connect_errno) {
+    echo "Failed to connect to MySQL: (" . $mysqli->connect_errno . ")" . $mysqli->connect_error;
+}	
 	
-$name = $_POST['name'];
-$email_address = $_POST['email'];
-$phone = $_POST['phone'];
-$message = $_POST['message'];
+	//Variables en el html
+	//Empleado
+	$empid = $_POST['empid'];
+	//y los otros
+	//Usuario
+	$cedulaU = $_POST['cedulaU'];
+	$nombreU = $_POST['nombreU'];
+	$passU = $_POST['passu'];
+	$emailU = $_POST['emailU'];
 	
-// Create the email and send the message
-$to = 'yourname@yourdomain.com'; // Add your email address inbetween the '' replacing yourname@yourdomain.com - This is where the form will send a message to.
-$email_subject = "Website Contact Form:  $name";
-$email_body = "You have received a new message from your website contact form.\n\n"."Here are the details:\n\nName: $name\n\nEmail: $email_address\n\nPhone: $phone\n\nMessage:\n$message";
-$headers = "From: noreply@yourdomain.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
-$headers .= "Reply-To: $email_address";	
-mail($to,$email_subject,$email_body,$headers);
-return true;			
+	$query13junio =INSERT INTO usuario VALUES ('$cedulaU','$passU','$nombreU','emailU');
+
+	
+	$query1 = "INSERT INTO movilidadinterno VALUES('$fsolicitud','$nombre','$apellidos','$lnacimiento','$fnacimiento','$sexo','$gsanguineo','$factorrh',
+	'$tipodocumento','$identificacion','$email','$direccionres','$ciudadres','$tel','$cel','$facultadorigen','$progacademico',
+	'$sede','$nivel','$proacumulado','$jefedepto','$teljefe','$emailjefe','$nombredestino','$sededestino','$facultaddestino','$progacademico1','$semestreAcademico','$udeac1','$udeac2',
+	'$udeac3','$udeac4','$udeac5','$udeac6','$udean1','$udean2','$udean3','$udean4','$udean5','$udean6','$anfitrionac1','$anfitrionac2','$anfitrionac3','$anfitrionac4',
+	'$anfitrionac5','$anfitrionac6','$anfitrionan1','$anfitrionan2','$anfitrionan3','$anfitrionan4','$anfitrionan5','$anfitrionan6')";
+	echo $query13junio;
+	
+
+if (!$mysqli->query($query13junio)){
+    echo "Table creation failed: (". $mysqli->errno.")".$mysqli->error;
+	}
+
+//try {
+//    echo inverse(5)."\n";
+//}catch(Exception $e){
+//    echo 'Caught exception: ',  $e->getMessage(), "\n";
+//}
+//verificacion de existencia del directorio
+//if ($error) {
+  //  echo '<script>alert("Ocurrio un error al subir los archivos")</script>';
+    //echo '<script>location.href="index.php";</script>';
+//} else {
+  //  echo '<script>alert("Los archivos se alojaron correctamente")</script>';
+    //echo '<script>location.href="index.php";</script>';
+//}
 ?>
+
+
