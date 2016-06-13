@@ -61,8 +61,12 @@
 						data-target="#myModal">Hacer una petición</a></li>
 					<li class="page-scroll"><a href="" data-toggle="modal"
 						data-target="#myModal0">Presentar una queja</a></li>
-						<li class="page-scroll"><a href="" data-toggle="modal"
+					<li class="page-scroll"><a href="" data-toggle="modal"
 						data-target="#myModal1">Generar un reclamo</a></li>
+						
+					<li class="page-scroll"><a href="./index.html" data-toggle="modal"
+						data-target="">Inicio</a></li>
+						
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -103,6 +107,34 @@
 				class="fa fa-chevron-up"></i>
 			</a>
 		</div>
+		
+			<!--AL FINAL DE LA PÁGINA  -->
+	<section id="contact" class="text-center">
+		<div class="footer-above">
+			<div class="container">
+				<div class="row">
+					<div class="footer-col col-md-4">
+						<h3>Ubicación</h3>
+						<p>UdeA</p>
+					</div>
+
+					<div class="footer-col col-md-4">
+						<h3>Acerca de nosotros</h3>
+						<p>Buscamos que nuestros clientes se sientan satisfechos, así que si no está conforme con algún
+						aspecto de cualquier tipo concerniente a nuestros servicios no dude en informarnos.</p>
+					</div>
+					
+					<div class="footer-col col-md-4">
+						<h3>Comuníquese</h3>
+						<p>Teléfono: 2222255</p>
+						<p>Correo: gilberto.rendon@udea.edu.co</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		</footer>
+	
+
 
 		<!-- PREASENTACIÓN DE PETICIÓN-->
 		<div ng-controller="login">
@@ -120,14 +152,11 @@
 						<div class="modal-body">
 							<form name="sentMessage" id="contactForm" novalidate
 								ng-submit="validarEmpleado()">
-								<div class="row control-group">
-									<div>
-										<label>Usuario</label> <input ng-model="cedula" type="text"
-											class="form-control" placeholder="usuario" id="user" required
-											data-validation-required-message="Por favor ingrese su usuario.">
-										<p class="help-block text-danger"></p>
-									</div>
-								</div>
+						
+						<div class="row control-group">
+						 </div>
+								
+									
 								<div class="row control-group">
 									<div>
 										<label>Petición</label> <input ng-model="pass"
@@ -167,14 +196,7 @@
 						<div class="modal-body">
 							<form name="sentMessage" id="contactForm" novalidate
 								ng-submit="validarEmpleado()">
-								<div class="row control-group">
-									<div>
-										<label>Usuario</label> <input ng-model="cedula" type="text"
-											class="form-control" placeholder="usuario" id="user" required
-											data-validation-required-message="Por favor ingrese su usuario.">
-										<p class="help-block text-danger"></p>
-									</div>
-								</div>
+							
 								<div class="row control-group">
 									<div>
 										<label>Queja</label> <input ng-model="pass"
@@ -214,14 +236,7 @@
 						<div class="modal-body">
 							<form name="sentMessage" id="contactForm" novalidate
 								ng-submit="validarEmpleado()">
-								<div class="row control-group">
-									<div>
-										<label>Usuario</label> <input ng-model="cedula" type="text"
-											class="form-control" placeholder="usuario" id="user" required
-											data-validation-required-message="Por favor ingrese su usuario.">
-										<p class="help-block text-danger"></p>
-									</div>
-								</div>
+							
 								<div class="row control-group">
 									<div>
 										<label>Reclamo</label> <input ng-model="pass"
