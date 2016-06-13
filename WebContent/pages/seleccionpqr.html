@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<title>Inversiones xyz</title>
+<title>Selección PQR</title>
 <script src="../resources/js/angular.min.js"></script>
 <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +49,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#page-top">Inversiones xyz</a>
+				<a class="navbar-brand" href="#page-top">¡Bienvenido!</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -58,20 +58,11 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="hidden"><a href=""></a></li>
 					<li class="page-scroll"><a href="" data-toggle="modal"
-						data-target="#myModal">Empleado</a></li>
-						
-						
-						
-						
-					<li class="page-scroll"><a href="seleccionpqr.html" data-toggle="modal"
-						data-target="">Usuario</a></li>
-					
-					
-					<!--  a href="seleccionarpqr.html" target="_self"><input type="button"class="botonimagen" value="ESTUDIANTE UDEA"
- style="background-image:url(imagenes/interno.png)" /></a-->
-					
-					
-					<li class="page-scroll"><a href="#contact">Contactenos</a></li>
+						data-target="#myModal">Hacer una petición</a></li>
+					<li class="page-scroll"><a href="" data-toggle="modal"
+						data-target="#myModal0">Presentar una queja</a></li>
+						<li class="page-scroll"><a href="" data-toggle="modal"
+						data-target="#myModal1">Generar un reclamo</a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -87,7 +78,7 @@
 					<img class="img-responsive" src="img/vector2.jpg" alt=""
 						style="width: 300px; heigth: 300px; border-radius: 50%">
 					<div class="intro-text">
-						<span class="name">Ventas de electrodomesticos</span>
+						<span class="name">Venta de electrodomesticos</span>
 						<hr class="star-light">
 
 					</div>
@@ -96,59 +87,12 @@
 		</div>
 
 
-		<div class="container" id="login" style="display: none">
-			<div class="row">
-				<div class="col-lg-8 col-lg-offset-2">
-					<!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-					<!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-					<form name="sentMessage" id="contactForm" novalidate>
-						<div class="row control-group">
-							<div>
-								<label>Usuario</label> <input type="text" class="form-control"
-									placeholder="usuario" id="user" required
-									data-validation-required-message="Por favor ingrese su usuario.">
-								<p class="help-block text-danger"></p>
-							</div>
-						</div>
-						<div class="row control-group">
-							<div>
-								<label>Contraseña</label> <input type="password"
-									class="form-control" placeholder="contraseña" id="pass"
-									required
-									data-validation-required-message="Por favor ingrese su contraseña.">
-								<p class="help-block text-danger"></p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-xs-12">
-								<button type="submit" class="btn btn-success btn-lg">Send</button>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
+	
 	</header>
 
 	<!-- Footer -->
 	<section id="contact" class="text-center">
-		<div class="footer-above">
-			<div class="container">
-				<div class="row">
-					<div class="footer-col col-md-4">
-						<h3>Ubicación</h3>
-						<p>UdeA</p>
-					</div>
 
-					<div class="footer-col col-md-4">
-						<h3>Acerca de nosotros</h3>
-						<p>Somos una compañia comprometida con los usuarios,
-							realizamos ventas de electrodomesticos y muebles al por mayor y
-							al detal</p>
-					</div>
-				</div>
-			</div>
-		</div>
 		</footer>
 
 
@@ -160,7 +104,7 @@
 			</a>
 		</div>
 
-		<!-- Login-->
+		<!-- PREASENTACIÓN DE PETICIÓN-->
 		<div ng-controller="login">
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel">
@@ -171,7 +115,7 @@
 								aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
-							<h4 class="modal-title" id="myModalLabel">Login Empleado</h4>
+							<h4 class="modal-title" id="myModalLabel">Hacer una petición</h4>
 						</div>
 						<div class="modal-body">
 							<form name="sentMessage" id="contactForm" novalidate
@@ -186,10 +130,10 @@
 								</div>
 								<div class="row control-group">
 									<div>
-										<label>Contraseña</label> <input ng-model="pass"
-											type="password" class="form-control" placeholder="contraseña"
-											id="pass" required
-											data-validation-required-message="Por favor ingrese su contraseña.">
+										<label>Petición</label> <input ng-model="pass"
+											type="textarea" class="form-control" placeholder="peticion"
+											id="petición" required
+											data-validation-required-message="Ingrese texto en el campo">
 										<p class="help-block text-danger"></p>
 									</div>
 								</div>
@@ -206,41 +150,101 @@
 			</div>
 		</div>
 
-		<!-- Login y registro de usuarios -->
-		<div class="modal fade" id="loginUsuario" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<h4 class="modal-title" id="myModalLabel">Usuario</h4>
-					</div>
+		<!-- PRESENTACIÓN DE UNA QUEJA-->
 
-					<ul class="nav nav-tabs">
-						<li class="active"><a data-toggle="tab" href="#loginUsuarioDialog">Home</a></li>
-						<li><a data-toggle="tab" href="#registro">Menu 1</a></li>
-					</ul>
-
-					<div class="tab-content">
-						<div id="loginUsuarioDialog" class="tab-pane fade in active">
-							<h3>HOME</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-								sed do eiusmod tempor incididunt ut labore et dolore magna
-								aliqua.</p>
+		<div ng-controller="login">
+			<div class="modal fade" id="myModal0" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Presentar una queja</h4>
 						</div>
-						<div id="registro" class="tab-pane fade">
-							<h3>Menu 1</h3>
-							<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
-								laboris nisi ut aliquip ex ea commodo consequat.</p>
+						<div class="modal-body">
+							<form name="sentMessage" id="contactForm" novalidate
+								ng-submit="validarEmpleado()">
+								<div class="row control-group">
+									<div>
+										<label>Usuario</label> <input ng-model="cedula" type="text"
+											class="form-control" placeholder="usuario" id="user" required
+											data-validation-required-message="Por favor ingrese su usuario.">
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+								<div class="row control-group">
+									<div>
+										<label>Queja</label> <input ng-model="pass"
+											type="textarea" class="form-control" placeholder="queja"
+											id="queja" required
+											data-validation-required-message="Ingrese texto en el campo">
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Cancelar</button>
+									<button type="submit" class="btn btn-primary">Aceptar</button>
+								</div>
+							</form>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
+		
+		<!-- GENERACIÓN DE UN RECLAMO-->
+
+		<div ng-controller="login">
+			<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Generar un reclamo</h4>
+						</div>
+						<div class="modal-body">
+							<form name="sentMessage" id="contactForm" novalidate
+								ng-submit="validarEmpleado()">
+								<div class="row control-group">
+									<div>
+										<label>Usuario</label> <input ng-model="cedula" type="text"
+											class="form-control" placeholder="usuario" id="user" required
+											data-validation-required-message="Por favor ingrese su usuario.">
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+								<div class="row control-group">
+									<div>
+										<label>Reclamo</label> <input ng-model="pass"
+											type="textarea" class="form-control" placeholder="queja"
+											id="queja" required
+											data-validation-required-message="Ingrese texto en el campo">
+										<p class="help-block text-danger"></p>
+									</div>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Cancelar</button>
+									<button type="submit" class="btn btn-primary">Aceptar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
 		<!-- jQuery -->
 		<script src="js/jquery.js"></script>
 
