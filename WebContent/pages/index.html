@@ -59,18 +59,8 @@
 					<li class="hidden"><a href=""></a></li>
 					<li class="page-scroll"><a href="" data-toggle="modal"
 						data-target="#myModal">Empleado</a></li>
-
-
-
-
 					<li class="page-scroll"><a href="" data-toggle="modal"
 						data-target="#loginUsuario">Usuario</a></li>
-
-
-					<!--  a href="seleccionarpqr.html" target="_self"><input type="button"class="botonimagen" value="ESTUDIANTE UDEA"
- style="background-image:url(imagenes/interno.png)" /></a-->
-
-
 					<li class="page-scroll"><a href="#contact">Contactenos</a></li>
 				</ul>
 			</div>
@@ -81,7 +71,7 @@
 
 	<!-- Header -->
 	<header>
-		<div class="container" id="main">
+		<div class="container" id="main" >
 			<div class="row">
 				<div class="col-lg-12">
 					<img class="img-responsive" src="img/vector2.jpg" alt=""
@@ -91,11 +81,12 @@
 						<hr class="star-light">
 
 					</div>
+	
 				</div>
 			</div>
 		</div>
 
-
+<!-- Esta no se usa yo creo, entonces se puede borrar -->
 		<div class="container" id="login" style="display: none">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2">
@@ -146,6 +137,11 @@
 							realizamos ventas de electrodomesticos y muebles al por mayor y
 							al detal</p>
 					</div>
+					<div class="footer-col col-md-4">
+						<h3>Comuníquese</h3>
+						<p>Teléfono: 2222255</p>
+						<p>Correo: gilberto.rendon@udea.edu.co</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -160,7 +156,7 @@
 			</a>
 		</div>
 
-		<!-- Login-->
+		<!-- Login empleado-->
 		<div ng-controller="login">
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 				aria-labelledby="myModalLabel">
@@ -178,9 +174,9 @@
 								ng-submit="validarEmpleado()">
 								<div class="row control-group">
 									<div>
-										<label>Usuario</label> <input ng-model="cedula" type="text"
-											class="form-control" placeholder="usuario" id="user" required
-											data-validation-required-message="Por favor ingrese su usuario.">
+										<label>Cédula del empleado</label> <input name="empid" ng-model="cedula" type="text"
+											class="form-control" placeholder="identificación" id="empid" required
+											data-validation-required-message="Por favor ingrese su identificación">
 										<p class="help-block text-danger"></p>
 									</div>
 								</div>
@@ -216,7 +212,7 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Login Empleado</h4>
+						<h4 class="modal-title" id="myModalLabel">Usuario</h4>
 					</div>
 					<div class="modal-body">
 						<ul class="nav nav-tabs">
@@ -231,8 +227,8 @@
 										ng-submit="validarUsuario()">
 										<div class="row control-group">
 											<div>
-												<label>Usuario</label> <input ng-model="cedulaU" type="text"
-													class="form-control" placeholder="usuario" id="user"
+												<label>Identificación</label> <input ng-model="cedulaU" type="text"
+													class="form-control" placeholder="usuario" id="cedulaU"
 													required
 													data-validation-required-message="Por favor ingrese su usuario.">
 												<p class="help-block text-danger"></p>
@@ -242,7 +238,7 @@
 											<div>
 												<label>Contraseña</label> <input ng-model="passU"
 													type="password" class="form-control"
-													placeholder="contraseña" id="pass" required
+													placeholder="contraseña" id="passU" required
 													data-validation-required-message="Por favor ingrese su contraseña.">
 												<p class="help-block text-danger"></p>
 											</div>
@@ -259,8 +255,45 @@
 							</div>
 							<div id="menu1" class="tab-pane fade">
 								<h3>Registro</h3>
-								<p>Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+										<div class="row control-group">
+											<div>
+												<label>Identificación(CC)</label> <input ng-model="cedulaU" type="text"
+													class="form-control" placeholder="id" id="cedulaU"
+													required
+													data-validation-required-message="Por favor ingrese su usuario.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+										
+											<div class="row control-group">
+											<div>
+												<label>Nombre</label> <input ng-model="nameU"
+													type="password" class="form-control"
+													placeholder="nombre" id="nombreU" required
+													data-validation-required-message="Por favor ingrese su contraseña.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+										
+										<div class="row control-group">
+											<div>
+												<label>Contraseña</label> <input ng-model="passU"
+													type="password" class="form-control"
+													placeholder="contraseña" id="passU" required
+													data-validation-required-message="Por favor ingrese su contraseña.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+									
+										<div class="row control-group">
+											<div>
+												<label>Correo electrónico</label> <input ng-model="emailU"
+													type="text" class="form-control"
+													placeholder="email" id="emailU" required
+													data-validation-required-message="Por favor ingrese su contraseña.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
 							</div>
 
 						</div>
