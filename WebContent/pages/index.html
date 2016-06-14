@@ -273,8 +273,17 @@
 										<div class="row control-group">
 											<div>
 												<label>Contraseña</label> <input ng-model="pass"
-													type="text" class="form-control"
+													type="password" class="form-control"
 													placeholder="contraseña" id="pass" required
+													data-validation-required-message="Por favor ingrese su contraseña.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+										<div class="row control-group">
+											<div>
+												<input ng-model="pass2"
+													type="password" class="form-control"
+													placeholder="Ingrese contraseña de nuevo" id="pass" required
 													data-validation-required-message="Por favor ingrese su contraseña.">
 												<p class="help-block text-danger"></p>
 											</div>

@@ -44,12 +44,13 @@ app.controller('login',function($scope,ServiceValidarEmpleado,ServiceValidarUsua
 app.controller('registroUsuarios',function($scope,ServiceCrearUsuario){
 	$scope.cedula="";
 	$scope.pass = "";
+	$scope.pass2="";
 	$scope.nombre="";
 	$scope.email="";
 	
 	
 	$scope.registrarUsuario = function(){
-		alert($scope.cedula + $scope.email);
+		if($scope.pass==$scope.pass2){
 		ServiceCrearUsuario.crear($scope.cedula,$scope.pass,$scope.nombre,$scope.email).success(function($data){
 			if($data.realizado=="true"){
 				alert("usuario creado");
@@ -58,6 +59,7 @@ app.controller('registroUsuarios',function($scope,ServiceCrearUsuario){
 			}
 		});
 		};
+	}
 });
 
 app.service('ServiceValidarEmpleado',function($http){
