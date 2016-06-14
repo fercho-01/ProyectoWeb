@@ -1,16 +1,33 @@
 /**
  * Controlador angular de la pagina web
  */
-var app = angular.module('proyecto',['ngRoute']);
+var app = angular.module('proyecto',['ngRoute','ngCookies']);
 var servicioLoginEmpleado = "http://localhost:8080/ProyectoWeb/rest/Empleado/Login";
 var servicioLoginUsuario = "http://localhost:8080/ProyectoWeb/rest/Usuario/Login";
 var servicioRegistrarUsuario = "http://localhost:8080/ProyectoWeb/rest/Usuario/Crear";
-app.config(['$routeProvider',function($routeProvider){
-	$routeProvider.when('/',{
-		templateUrl:'main.html',
-		controller:'main'
-	}).otherwise({redirectTo: '/'});
-}]);
+
+app.factory('auth', function($cookies){
+    return{
+    	 login : function(empleado)
+         {
+             //creamos la cookie con el nombre que nos han pasado
+             $cookies.nombreUsuario = empleado,
+             //mandamos a la lista de clientes
+             window.location="./empleado.html";
+         },
+        
+        validarEstado : function(){
+            if(typeof($cookies.nombreUsuario) == 'undefined'){
+                window.location"./index.html";
+            }
+            //en el caso de que intente acceder al login y ya haya iniciado sesi�n lo mandamos a 
+            //la lista de clientes
+            if(typeof($cookies.nombreUsuario) != 'undefined' && $location.url() == '/'){
+                $location.url('/listaClientes');
+            }
+        }
+    };
+});
 
 app.controller('login',function($scope,ServiceValidarEmpleado,ServiceValidarUsuario){
 	$scope.cedula="";
@@ -22,7 +39,8 @@ app.controller('login',function($scope,ServiceValidarEmpleado,ServiceValidarUsua
 		//alert("validar");
 		ServiceValidarEmpleado.validar($scope.cedula,$scope.pass).success(function($data){
 			if($data.valido=="true"){
-				window.location="./main.html";
+				
+				window.location="./empleado.html";
 			}else{
 				alert("empleado no valido");
 			}
