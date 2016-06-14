@@ -314,6 +314,11 @@
 												data-dismiss="modal">Cancelar</button>
 											<button type="submit" class="btn btn-primary">Aceptar</button>
 										</div>
+										
+										<ul>
+											<li ng-repeat="error in errorees">
+											<div data-validation-required-message={{error.error}}></div>
+										</ul>
 									</form>
 								</div>
 							</div>

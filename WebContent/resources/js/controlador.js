@@ -55,7 +55,7 @@ app.controller('registroUsuarios',function($scope,ServiceCrearUsuario){
 			if($data.realizado=="true"){
 				alert("usuario creado");
 			}else{
-				alert("usuario no creado");
+				$scope.errores = $data.errores;
 			}
 		});
 		};
