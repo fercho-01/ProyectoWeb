@@ -63,7 +63,8 @@
 						data-target="#myModal0">Presentar una queja</a></li>
 					<li class="page-scroll"><a href="" data-toggle="modal"
 						data-target="#myModal1">Generar un reclamo</a></li>
-						
+					<li class="page-scroll"><a href="" data-toggle="modal"
+						data-target="#myModal5">Estado de peticiones</a></li>	
 					<li class="page-scroll"><a href="./index.html" data-toggle="modal"
 						data-target="">Inicio</a></li>
 						
@@ -90,23 +91,76 @@
 			</div>
 		</div>
 
-
-	
 	</header>
 
 	<!-- Footer -->
 	<section id="contact" class="text-center">
 
 		</footer>
-
-
-
 		<!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
 		<div class="scroll-top page-scroll visible-xs visible-sm">
 			<a class="btn btn-primary" href="#page-top"> <i
 				class="fa fa-chevron-up"></i>
 			</a>
 		</div>
+		
+<!-- 		<!-- ESTADO DE PETICIONES--> -->
+<!-- 			<div class="container" id="myModal4"> -->
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-lg-12"> -->
+<!-- 									<table border="2px" style="width: 300px; heigth: 300px; border-radius: 50%">  -->
+<!-- 				            <tr> -->
+<!-- 				                <th colspan="4">Petición</th> -->
+<!-- 				                <th colspan="4">Estado</th> -->
+<!-- 				            </tr> -->
+<!-- 				            <tr> -->
+<!-- 				                <th colspan="4"><input id="udeac1" type="text" name="udeac1" placeholder="" /></th> -->
+<!-- 				                <th colspan="4"><input id="udean1" type="text" name="udean1" placeholder=""  /></th> -->
+				               
+<!-- 				            </tr> -->
+<!-- 				    </table> -->
+					
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+		
+		
+		<!--ESTADO DE PETICIONES VERSIÓN 2-->
+			<div ng-controller="login">
+			<div class="modal fade" id="myModal5" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel">Hacer una petición</h4>
+					<div class="modal-footer">
+						<table border="2px" style="width: 300px; heigth: 300px; border-radius: 50%"> 
+				            <tr>
+				                <th colspan="4">Petición</th>
+				                <th colspan="4">Estado</th>
+				            </tr>
+				            <tr>
+				                <th colspan="4"><input id="udeac1" type="text" name="udeac1" placeholder=""/></th>
+				                <th colspan="4"><input id="udean1" type="text" name="udean1" placeholder=""  /></th>  
+				            </tr>
+				    	</table>
+				    	  <br></br>
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Cancelar</button>
+									<button type="submit" class="btn btn-primary">Aceptar</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
 		
 			<!--AL FINAL DE LA PÁGINA  -->
 	<section id="contact" class="text-center">
@@ -154,9 +208,7 @@
 								ng-submit="validarEmpleado()">
 						
 						<div class="row control-group">
-						 </div>
-								
-									
+						 </div>									
 								<div class="row control-group">
 									<div>
 										<label>Petición</label> <input ng-model="pass"
@@ -258,6 +310,8 @@
 				</div>
 			</div>
 		</div>
+		
+		
 		
 		
 		<!-- jQuery -->
