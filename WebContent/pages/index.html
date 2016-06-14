@@ -258,9 +258,55 @@
 
 							</div>
 							<div id="menu1" class="tab-pane fade">
-								<h3>Registro</h3>
-								<p>Ut enim ad minim veniam, quis nostrud exercitation
-									ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+								<div ng-controller="registroUsuarios">
+									<form name="sentMessage" id="contactForm" novalidate
+										ng-submit="registrarUsuario()">
+										<div class="row control-group">
+											<div>
+												<label>Cedula</label> <input ng-model="cedula" type="text"
+													class="form-control" placeholder="usuario" id="user"
+													required
+													data-validation-required-message="Por favor ingrese su usuario.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+										<div class="row control-group">
+											<div>
+												<label>Contraseña</label> <input ng-model="pass"
+													type="text" class="form-control"
+													placeholder="contraseña" id="pass" required
+													data-validation-required-message="Por favor ingrese su contraseña.">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+										
+										<div class="row control-group">
+											<div>
+												<label>Nombre</label> <input ng-model="nombre"
+													type="text" class="form-control"
+													placeholder="Nombre" id="pass" required
+													data-validation-required-message="Por favor ingrese su nombre">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+										
+										<div class="row control-group">
+											<div>
+												<label>Email</label> <input ng-model="email"
+													type="text" class="form-control"
+													placeholder="Email" id="pass" required
+													data-validation-required-message="Por favor ingrese su email">
+												<p class="help-block text-danger"></p>
+											</div>
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Cancelar</button>
+											<button type="submit" class="btn btn-primary">Aceptar</button>
+										</div>
+									</form>
+								</div>
 							</div>
 
 						</div>

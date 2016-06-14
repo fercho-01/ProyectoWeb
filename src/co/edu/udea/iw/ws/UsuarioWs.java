@@ -14,6 +14,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -152,12 +153,13 @@ public class UsuarioWs {
 	 * @return true si la creacion del usuario es correcta, false de lo contrario
 	 */
 	@Produces(MediaType.TEXT_HTML)
-	@PUT
+	@POST
 	@Path("Crear")
 	//retornar json con usuario creado
-	public String crear(@FormParam("cedula")String cedula,@FormParam("pass")String pass,@FormParam("nombre")String nombre,@FormParam("email")String email){
+	public String crear(@QueryParam("cedula")String cedula,@QueryParam("pass")String pass,@QueryParam("nombre")String nombre,@QueryParam("email")String email){
 		boolean retorno=false;
 		boolean ejecutar=true;
+		System.out.println(cedula);
 		List<String> errores= new ArrayList<String>();
 		if(Validaciones.isTextoVacio(cedula)){
 			ejecutar=false;

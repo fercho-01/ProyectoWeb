@@ -4,6 +4,7 @@
 var app = angular.module('proyecto',['ngRoute']);
 var servicioLoginEmpleado = "http://localhost:8080/ProyectoWeb/rest/Empleado/Login";
 var servicioLoginUsuario = "http://localhost:8080/ProyectoWeb/rest/Usuario/Login";
+var servicioRegistrarUsuario = "http://localhost:8080/ProyectoWeb/rest/Usuario/Crear";
 app.config(['$routeProvider',function($routeProvider){
 	$routeProvider.when('/',{
 		templateUrl:'main.html',
@@ -29,7 +30,6 @@ app.controller('login',function($scope,ServiceValidarEmpleado,ServiceValidarUsua
 	}
 	
 	$scope.validarUsuario = function(){
-		
 		ServiceValidarUsuario.validar($scope.cedulaU,$scope.passU).success(function($data){
 			if($data.valido=="true"){
 				window.location="./main.html";
@@ -39,6 +39,25 @@ app.controller('login',function($scope,ServiceValidarEmpleado,ServiceValidarUsua
 		});
 	};
 	
+});
+
+app.controller('registroUsuarios',function($scope,ServiceCrearUsuario){
+	$scope.cedula="";
+	$scope.pass = "";
+	$scope.nombre="";
+	$scope.email="";
+	
+	
+	$scope.registrarUsuario = function(){
+		alert($scope.cedula + $scope.email);
+		ServiceCrearUsuario.crear($scope.cedula,$scope.pass,$scope.nombre,$scope.email).success(function($data){
+			if($data.realizado=="true"){
+				alert("usuario creado");
+			}else{
+				alert("usuario no creado");
+			}
+		});
+		};
 });
 
 app.service('ServiceValidarEmpleado',function($http){
@@ -65,4 +84,20 @@ app.service('ServiceValidarUsuario',function($http){
 			}
 		});
 	}
+});
+
+app.service('ServiceCrearUsuario',function($http){
+	this.crear = function(cedulaU,passU,nombreU,emailU){
+		alert(cedulaU + emailU);
+		return $http({
+			method : 'POST',
+			url : servicioRegistrarUsuario,
+			params : {
+				cedula : cedulaU,
+				pass : passU,
+				nombre : nombreU,
+				email : emailU
+			}
+		});
+	};
 });
