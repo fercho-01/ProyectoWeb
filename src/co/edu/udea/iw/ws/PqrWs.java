@@ -1,7 +1,6 @@
 package co.edu.udea.iw.ws;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.FormParam;
@@ -17,12 +16,16 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.sun.webkit.WebPage;
+
 import co.edu.udea.iw.dto.Empleado;
+import co.edu.udea.iw.dto.Pqr;
 import co.edu.udea.iw.service.PqrService;
 import co.edu.udea.iw.util.encode.Cifrar;
 import co.edu.udea.iw.util.exception.DaoException;
 import co.edu.udea.iw.util.exception.ServiceException;
 import co.edu.udea.iw.util.validations.Validaciones;
+import co.edu.udea.iw.webDto.webPqr;
 import co.edu.udea.iw.service.UsuarioService;
 import co.edu.udea.iw.dao.hibernate.UsuarioDAOHibernate;
 import co.edu.udea.iw.dto.Usuario;
@@ -165,7 +168,7 @@ public class PqrWs {
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
 	@Path("Modificar")
-	public String modificarPqr(@FormParam("idPqr")Integer idPqr,@FormParam("cedula")String cedula,@FormParam("respuesta")String respuesta){
+	public String modificarPqr(@QueryParam("idPqr")Integer idPqr,@QueryParam("cedula")String cedula,@QueryParam("respuesta")String respuesta){
 		boolean retorno=false;
 		boolean ejecutar=true;
 		System.out.println("idpqr::: "+idPqr);
@@ -211,5 +214,30 @@ public class PqrWs {
 		}
 		cadena+="}";
 		return cadena;
+	}
+	
+	/**
+	 * Metodo para obtener pqrs sin responder
+	 * @return json con la información
+	 */
+	@Produces(MediaType.APPLICATION_JSON)
+	@GET
+	@Path("ObtenerSinRespuesta")
+	public List<webPqr> obtenerSinRespuesta(){
+		List<webPqr> lista = new ArrayList<webPqr>();
+		try {
+			for(Pqr pqr:pqrService.obtenerNoResueltos()){
+				webPqr wPqr = new webPqr();
+				wPqr.setDescripcion(pqr.getDescripcion());
+				wPqr.setFechaSolicitud(pqr.getFechaSolicitud());
+				wPqr.setId(pqr.getId());
+				wPqr.setTipo(pqr.getTipo());
+				wPqr.setUsuario(pqr.getUsuario().getCedula());
+				lista.add(wPqr);
+			}
+		} catch (DaoException e) {
+			
+		}
+		return lista;
 	}
 }
