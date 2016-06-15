@@ -35,9 +35,22 @@
 <script src="../resources/js/angular-route.js"></script>
 <script src="../resources/js/angular-cookies.js"></script>
 <script src="../resources/js/Empleado.js"></script>
-
+<script type="text/javascript">
+	function cerrarSesion() {
+		alert("cerrar sesion");
+		document.cookie = "usuario"
+				+ '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+		window.location = "./index.html";
+	}
+	function verificar() {
+		user = document.cookie.match("(^|;) ?" + "usuario" + "=([^;]*)(;|$)");
+		if (user == null || user == "") {
+			window.location = "./index.html";
+		}
+	}
+</script>
 </head>
-<body id="page-top" class="index" ng-app="empleado">
+<body id="page-top" class="index" ng-app="empleado" onload="verificar()">
 	<!-- Navigation -->
 	<nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
@@ -48,15 +61,28 @@
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="page-scroll"><a id="user" href="">s</a></li>
+					<li class="page-scroll"><a href="#crear">Crear Empleado</a></li>
+					<li class="page-scroll"><a href="#/">Responder</a></li>
+					<li>
+					<div class="dropdown">
+						<button id="user" class="btn btn-default dropdown-toggle"
+							type="button" data-toggle="dropdown">
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="" onclick="cerrarSesion()">Cerrar sesion</a></li>
+						</ul>
+					</div>
+					</li>
+					
+
+					<!-- <li class="page-scroll"><a id="user" href="">s</a></li> -->
 				</ul>
 			</div>
 		</div>
 	</nav>
-	
-	<div ng-view>
-	
-	</div>
+
+	<div ng-view></div>
 	<!-- Footer -->
 	<section id="contact" class="text-center">
 		<div class="footer-above">

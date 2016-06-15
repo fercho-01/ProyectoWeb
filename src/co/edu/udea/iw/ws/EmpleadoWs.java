@@ -95,7 +95,7 @@ public class EmpleadoWs {
 	@Produces(MediaType.APPLICATION_JSON)
 	@PUT
 	@Path("Crear")
-	public String crearEmpleado(@FormParam("cedula")String cedula,@FormParam("pass")String pass,@FormParam("nombre")String nombre,@FormParam("email")String email,@FormParam("cargo")String cargo){
+	public String crearEmpleado(@QueryParam("cedula")String cedula,@QueryParam("pass")String pass,@QueryParam("nombre")String nombre,@QueryParam("email")String email,@QueryParam("cargo")String cargo){
 		boolean retorno=false;
 		boolean ejecutar=true;
 		List<String> errores= new ArrayList<String>();
@@ -142,6 +142,7 @@ public class EmpleadoWs {
 			cadena+="]";
 		}
 		cadena+="}";
+		System.out.println(cadena);
 		return cadena;
 	}
 	/**
@@ -206,6 +207,7 @@ public class EmpleadoWs {
 			cadena+="]";
 		}
 		cadena+="}";
+		
 		return cadena;
 	}
 }
