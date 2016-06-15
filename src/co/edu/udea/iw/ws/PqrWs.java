@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.sun.webkit.WebPage;
+//import com.sun.webkit.WebPage;
 
 import co.edu.udea.iw.dto.Empleado;
 import co.edu.udea.iw.dto.Pqr;
