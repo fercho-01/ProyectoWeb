@@ -57,6 +57,7 @@
 	</bean>
 	<bean id="pqrService" class="co.edu.udea.iw.service.PqrService">
 	    <property name="pqrDAO" ref="PqrDAO"></property>
+	    <property name="usuarioDAO" ref="UsuarioDAO"></property>
 	</bean>
 	<bean id="empleadoService" class="co.edu.udea.iw.service.EmpleadoService">
 		<property name="pqrDAO" ref="PqrDAO"></property>

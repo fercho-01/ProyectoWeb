@@ -27,7 +27,8 @@ app.controller('login',function($scope,ServiceValidarEmpleado,ServiceValidarUsua
 	$scope.validarUsuario = function(){
 		ServiceValidarUsuario.validar($scope.cedulaU,$scope.passU).success(function($data){
 			if($data.valido=="true"){
-				window.location="./main.html";
+				$cookies.put('usuario',$scope.cedulaU);
+				window.location="./Usuario.html";	
 			}else{
 				alert("usuario no valido");
 			}

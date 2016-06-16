@@ -25,6 +25,7 @@ import co.edu.udea.iw.util.encode.Cifrar;
 import co.edu.udea.iw.util.exception.DaoException;
 import co.edu.udea.iw.util.exception.ServiceException;
 import co.edu.udea.iw.util.validations.Validaciones;
+import co.edu.udea.iw.webDto.WebPqr2;
 import co.edu.udea.iw.webDto.webPqr;
 import co.edu.udea.iw.service.UsuarioService;
 import co.edu.udea.iw.dao.hibernate.UsuarioDAOHibernate;
@@ -104,8 +105,8 @@ public class PqrWs {
 	@Produces(MediaType.APPLICATION_JSON)
 	@POST
 	@Path("Realizar")
-	public String realizarPqr(@FormParam("cedula")String cedula,@FormParam("tipo")String tipo,
-			@FormParam("descripcion")String descripcion){
+	public String realizarPqr(@QueryParam("cedula")String cedula,@QueryParam("tipo")String tipo,
+			@QueryParam("descripcion")String descripcion){
 
 		boolean retorno=false;
 		boolean ejecutar=true;
@@ -154,6 +155,7 @@ public class PqrWs {
 			cadena+="]";
 		}
 		cadena+="}";
+		System.out.println("");
 		return cadena;
 	}
 	
@@ -240,4 +242,31 @@ public class PqrWs {
 		}
 		return lista;
 	}
+	
+	@Produces(MediaType.APPLICATION_JSON)
+	@GET
+	@Path("ObtenerUsuario")
+	public List<WebPqr2> obtenerUsuario(@QueryParam("usuario")String usuario){
+		System.out.println(usuario);
+		List<WebPqr2> lista = new ArrayList<WebPqr2>();
+		try {
+			for(Pqr pqr:pqrService.obtenerUsuario(usuario)){
+				WebPqr2 wPqr = new WebPqr2();
+				wPqr.setDescripcion(pqr.getDescripcion());
+				wPqr.setFechaSolicitud(pqr.getFechaSolicitud());
+				wPqr.setId(pqr.getId());
+				wPqr.setTipo(pqr.getTipo());
+				wPqr.setEmpleado(pqr.getEstado());
+				wPqr.setEstado(pqr.getEstado());
+				wPqr.setFechaRespuesta(pqr.getFechaRespuesta());
+				wPqr.setRespuesta(pqr.getRespuesta());
+				lista.add(wPqr);
+			}
+		} catch (DaoException e) {
+			
+		}
+		System.out.println(lista.size());
+		return lista;
+	}
+	
 }

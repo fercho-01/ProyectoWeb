@@ -4,53 +4,14 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/ProyectoIW"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/antlr-2.7.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/asm-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/com.springsource.org.aopalliance-1.0.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/commons-collections-3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/commons-logging.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/hibernate3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/hibernate-jpa-2.0-api-1.0.1.Final.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jackson-core-asl-1.5.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jackson-jaxrs-1.5.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jackson-mapper-asl-1.5.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jackson-xc-1.5.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/javassist-3.12.0.GA.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jersey-apache-client-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jersey-atom-abdera-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jersey-client-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jersey-core-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jersey-guice-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jersey-json-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jersey-multipart-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jersey-server-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jersey-simple-server-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jersey-spring-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jettison-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jsr311-api-1.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/jta-1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/mysql-connector-java-5.1.22-bin.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/oauth-client-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/oauth-server-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/oauth-signature-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/slf4j-api-1.6.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/slf4j-log4j12-1.7.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/spring-aop-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/spring-beans-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/spring-context-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/spring-core-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/spring-expression-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/spring-jdbc-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/spring-orm-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/spring-test-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/spring-tx-4.1.6.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Auxprog/Desktop/ProyectoClase/TodasLasLibrerias/spring-web-4.1.6.RELEASE.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Driver_mysql"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hibernate"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/log4j"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/spring"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
